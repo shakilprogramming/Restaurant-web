@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Slider() {
@@ -13,10 +12,6 @@ export default function Slider() {
           <Link href="#featured" className="button-secondary">Explore our dishes</Link>
         </div>
         <p className="hero-note">Made fresh at Massimo, every day.</p>
-      </div>
-      <div className="hero-visual hero-enter-image">
-        <Image src="/slide1.png" alt="Freshly prepared pizza, served hot at Massimo" fill priority sizes="(min-width: 900px) 52vw, 100vw" className="hero-image" />
-        <div className="hero-image-caption"><span className="caption-dot" /> Fresh from our kitchen</div>
       </div>
     </section>
   );
