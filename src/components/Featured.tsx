@@ -5,6 +5,8 @@ import Link from "next/link";
 import React from "react";
 import QuickAddButton from "./QuickAddButton";
 
+export const dynamic = "force-dynamic";
+
 const getData = async (): Promise<ProductType[] | null> => {
   try {
     const products = await prisma.product.findMany({
@@ -31,7 +33,7 @@ const Featured = async () => {
 
   if (!featuredProducts) {
     return (
-      <p className="w-full p-8 text-center text-red-500" role="status">
+      <p className="section-empty" role="status">
         Featured dishes are temporarily unavailable. Please try again later.
       </p>
     );
@@ -39,35 +41,42 @@ const Featured = async () => {
 
   if (featuredProducts.length === 0) {
     return (
-      <p className="w-full p-8 text-center text-red-500" role="status">
+      <p className="section-empty" role="status">
         No featured dishes are available right now.
       </p>
     );
   }
 
   return (
-    <section id="featured" aria-label="Featured dishes" className="w-full overflow-x-auto text-red-500">
+    <section id="featured" aria-label="Featured dishes" className="featured-section">
+      <div className="section-heading"><p className="eyebrow">A few favorites</p><h2>Made to be remembered.</h2><p>Discover a little something delicious from our kitchen.</p></div>
       {/* WRAPPER */}
-      <div className="w-max flex">
+      <div className="featured-grid">
         {/* SINGLE ITEM */}
         {featuredProducts.map((item) => (
           <div
             key={item.id}
-            className="w-screen h-[60vh] flex flex-col items-center justify-around p-4 hover:bg-fuchsia-50 transition-all duration-300 md:w-[50vw] xl:w-[33vw] xl:h-[90vh]"
+            className="featured-card"
           >
             {/* IMAGE CONTAINER */}
             {item.img && (
-              <div className="relative flex-1 w-full hover:rotate-[60deg] transition-all duration-500">
-                <Image src={item.img} alt={item.title} fill className="object-contain" />
+              <div className="featured-photo">
+                <Image
+                  src={item.img}
+                  alt={item.title}
+                  fill
+                  sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
+                />
               </div>
             )}
             {/* TEXT CONTAINER */}
-            <div className=" flex-1 flex flex-col items-center justify-center text-center gap-4">
-              <Link href={`/product/${item.id}`} className="text-xl font-bold uppercase xl:text-2xl 2xl:text-3xl">
+            <div className="featured-info">
+              <Link href={`/product/${item.id}`} className="featured-name">
                 {item.title}
               </Link>
-              <p className="p-4 2xl:p-8">{item.desc}</p>
-              <span className="text-xl font-bold">${item.price}</span>
+              <p>{item.desc}</p>
+              <span className="featured-price">${item.price.toFixed(2)}</span>
               <QuickAddButton
                 product={{
                   id: item.id,

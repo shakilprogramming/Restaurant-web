@@ -21,7 +21,7 @@ const CartIcon = () => {
             src="/cart.png"
             alt=""
             fill
-            sizes="100%"
+            sizes="(min-width: 768px) 20px, 32px"
             className="object-contain"
           />
         </div>

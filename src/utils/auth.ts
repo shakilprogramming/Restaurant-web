@@ -31,18 +31,23 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async session({ token, session }) {
-      if (token) {
-        session.user.isAdmin = token.isAdmin;
-      }
+      session.user.isAdmin = token.isAdmin ?? false;
       return session;
     },
     async jwt({ token }) {
+      // OAuth tokens can briefly lack an email. Avoid passing null to Prisma,
+      // which would fail session loading for those callbacks.
+      if (!token.email) {
+        token.isAdmin = false;
+        return token;
+      }
+
       const userInDb = await prisma.user.findUnique({
         where: {
-          email: token.email!,
+          email: token.email,
         },
       });
-      token.isAdmin = userInDb?.isAdmin!;
+      token.isAdmin = userInDb?.isAdmin ?? false;
       return token;
     },
   },

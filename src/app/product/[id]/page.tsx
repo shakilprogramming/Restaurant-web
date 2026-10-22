@@ -24,6 +24,7 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
             alt={singleProduct.title}
             className="object-contain"
             fill
+            sizes="(min-width: 768px) 50vw, 100vw"
           />
         ) : (
           <div className="flex h-full items-center justify-center rounded-xl bg-orange-100 text-6xl" aria-hidden="true">

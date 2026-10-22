@@ -45,7 +45,7 @@ const Menu = () => {
         <nav
           id="mobile-navigation"
           aria-label="Mobile navigation"
-          className="bg-red-500 text-white absolute left-0 top-full w-full max-h-[calc(100dvh-6rem)] overflow-y-auto flex flex-col gap-8 items-center justify-center py-8 text-3xl z-10"
+          className="absolute left-0 top-full z-10 flex w-full max-h-[calc(100dvh-6rem)] flex-col items-center justify-center gap-8 overflow-y-auto bg-white py-8 text-2xl font-semibold text-stone-900 shadow-xl md:hidden"
         >
           {links.map((item) => (
             <Link href={item.url} key={item.id} onClick={() => setOpen(false)}>

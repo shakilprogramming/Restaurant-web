@@ -4,24 +4,31 @@ import React from "react";
 
 const Offer = () => {
   return (
-    <section aria-labelledby="offer-title" className="bg-black min-h-[calc(100svh-3rem)] flex flex-col md:flex-row md:justify-between md:bg-[url('/offerBg.png')] md:min-h-[70vh]">
+    <section aria-labelledby="offer-title" className="offer-section">
       {/* TEXT CONTAINER */}
-      <div className="flex-1 flex flex-col justify-center items-center text-center gap-8 p-6">
-        <h2 id="offer-title" className="text-white text-4xl font-bold xl:text-6xl">Delicious Burger & French Fry</h2>
-        <p className="text-white xl:text-xl">
+      <div className="offer-copy">
+        <p className="eyebrow">A Massimo favorite</p>
+        <h2 id="offer-title">Something delicious is waiting.</h2>
+        <p>
           A delicious meal made fresh and ready to enjoy. Find your next
           favorite on our menu.
         </p>
         <Link
           href="/menu"
-          className="bg-red-500 text-white rounded-md py-3 px-6"
+          className="button-primary"
         >
           Order Now
         </Link>
       </div>
       {/* IMAGE CONTAINER */}
-      <div className="flex-1 w-full relative min-h-64 md:min-h-[70vh]">
-        <Image src="/offerProduct.png" alt="Burger and fries" fill className="object-contain" />
+      <div className="offer-visual">
+        <Image
+          src="/offerProduct.png"
+          alt="Burger and fries"
+          fill
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className="object-contain"
+        />
       </div>
     </section>
   );

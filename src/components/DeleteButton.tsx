@@ -1,11 +1,16 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
-const DeleteButton = ({ id }: { id: string }) => {
+const DeleteButton = ({
+  id,
+  onDeleted,
+}: {
+  id: string;
+  onDeleted?: () => void;
+}) => {
   const { data: session, status } = useSession();
   const router = useRouter();
 
@@ -23,8 +28,12 @@ const DeleteButton = ({ id }: { id: string }) => {
     });
 
     if (res.status === 200) {
-      router.push("/menu");
       toast("The product has been deleted!");
+      if (onDeleted) {
+        onDeleted();
+      } else {
+        router.push("/menu");
+      }
     } else {
       const data = await res.json();
       toast.error(data.message);
@@ -37,7 +46,20 @@ const DeleteButton = ({ id }: { id: string }) => {
       onClick={handleDelete}
       aria-label="Delete this product"
     >
-      <Image src="/delete.png" alt="" width={20} height={20} />
+      <svg
+        aria-hidden="true"
+        className="h-5 w-5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M6 7h12m-10 0 .7 13h6.6L16 7M9 7V4h6v3m-4 4v5m2-5v5"
+        />
+      </svg>
     </button>
   );
 };
