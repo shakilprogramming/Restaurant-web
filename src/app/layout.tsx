@@ -1,17 +1,18 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Anton, DM_Sans } from "next/font/google";
 import AuthProvider from "@/components/AuthProvider";
 import QueryProvider from "@/components/QueryProvider";
 import SiteChrome from "@/components/SiteChrome";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-const inter = Inter({ subsets: ["latin"] });
+const anton = Anton({ subsets: ["latin"], weight: "400", variable: "--font-display" });
+const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"], variable: "--font-body" });
 
 export const metadata: Metadata = {
-  title: "Massimo Restaurant",
-  description: "Freshly prepared meals from the Massimo restaurant menu.",
+  title: "NaanBite — Burgers, Naan & Bold Flavours",
+  description: "Handcrafted burgers, warm naan and bold house sauces, made fresh at NaanBite.",
 };
 
 export default function RootLayout({
@@ -21,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${dmSans.className} ${anton.variable}`}>
         <AuthProvider>
           <QueryProvider>
             <div>

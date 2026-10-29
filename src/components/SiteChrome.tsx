@@ -6,7 +6,6 @@ import React from "react";
 import AdminShell from "./AdminShell";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
-import Notification from "./Notification";
 
 const SiteChrome = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -26,7 +25,6 @@ const SiteChrome = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <Notification />
       <Navbar />
       {children}
       <Footer />

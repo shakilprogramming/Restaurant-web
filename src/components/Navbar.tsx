@@ -1,36 +1,15 @@
-import React from "react";
-import Menu from "./Menu";
 import Link from "next/link";
+import Menu from "./Menu";
 import CartIcon from "./CartIcon";
 import UserLinks from "./UserLinks";
 
-const Navbar = () => {
-  return (
-    <header className="site-header">
-      {/* LEFT LINKS */}
-      <div className="hidden md:flex gap-7 flex-1 text-sm normal-case font-medium text-stone-600">
-        <Link href="/">Homepage</Link>
-        <Link href="/menu">Menu</Link>
-        <Link href="/#featured">Featured</Link>
-      </div>
-      {/* LOGO */}
-      <div className="brand-mark text-xl md:font-bold flex-1 md:text-center">
-        <Link href="/" aria-label="Massimo home"><span className="brand-icon">M</span> Massimo</Link>
-      </div>
-      {/* MOBILE MENU */}
-      <div className="md:hidden">
-        <Menu />
-      </div>
-      {/* RIGHT LINKS */}
-      <div className="hidden md:flex gap-5 items-center justify-end flex-1 text-sm">
-        <Link href="/menu" className="button-primary button-small">
-          Order online
-        </Link>
-        <UserLinks />
-        <CartIcon />
-      </div>
-    </header>
-  );
-};
+const Navbar = () => (
+  <header className="site-header">
+    <Link href="/" className="brand-mark" aria-label="NaanBite home"><span className="brand-icon">N</span><span>NaanBite</span></Link>
+    <nav className="desktop-nav" aria-label="Main navigation"><a href="/#story">Our Story</a><a href="/#deals">Deals</a><a href="/#visit">Visit Us</a></nav>
+    <div className="header-actions"><Link href="/menu" className="button-primary button-small">Order now <span aria-hidden="true">→</span></Link><div className="account-links"><UserLinks /></div><div className="cart-link"><CartIcon /></div></div>
+    <div className="mobile-nav"><Menu /></div>
+  </header>
+);
 
 export default Navbar;

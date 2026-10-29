@@ -1,5 +1,9 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import DashboardCategories from "@/components/DashboardCategories";
+import DashboardCustomers from "@/components/DashboardCustomers";
+import DashboardOrderManager from "@/components/DashboardOrderManager";
+import MenuInventory from "@/components/MenuInventory";
 import { getAuthSession } from "@/utils/auth";
 import { prisma } from "@/utils/connect";
 
@@ -459,6 +463,27 @@ export default async function DashboardPage({
               </p>
             </div>
           )}
+        </section>
+
+        <section className="mt-10">
+          <div className="mb-5">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-orange-700">
+              Restaurant workspace
+            </p>
+            <h2 className="mt-1 text-2xl font-bold tracking-tight text-stone-950">
+              Manage your restaurant
+            </h2>
+            <p className="mt-1 text-sm text-stone-600">
+              Quick controls for orders, menu items, categories, and customers.
+            </p>
+          </div>
+
+          <div className="grid gap-6 xl:grid-cols-2">
+            <DashboardOrderManager />
+            <MenuInventory />
+            <DashboardCategories />
+            <DashboardCustomers />
+          </div>
         </section>
       </div>
     </main>

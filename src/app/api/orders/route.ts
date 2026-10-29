@@ -24,6 +24,7 @@ export const GET = async (_request: NextRequest) => {
       where: session.user.isAdmin
         ? undefined
         : { userEmail: session.user.email ?? "" },
+      orderBy: { createdAt: "desc" },
     });
     return NextResponse.json(orders);
   } catch (error) {

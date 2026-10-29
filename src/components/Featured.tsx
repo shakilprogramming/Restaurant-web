@@ -49,7 +49,7 @@ const Featured = async () => {
 
   return (
     <section id="featured" aria-label="Featured dishes" className="featured-section">
-      <div className="section-heading"><p className="eyebrow">A few favorites</p><h2>Made to be remembered.</h2><p>Discover a little something delicious from our kitchen.</p></div>
+      <div className="section-top"><div className="section-heading"><p className="eyebrow">Fan favourites</p><h2>Pick your next obsession.</h2></div><p className="section-copy">A punchy menu built around quality ingredients, warm naan and sauces mixed in-house every day.</p></div>
       {/* WRAPPER */}
       <div className="featured-grid">
         {/* SINGLE ITEM */}

@@ -7,10 +7,9 @@ import CartIcon from "./CartIcon";
 import UserLinks from "./UserLinks";
 
 const links = [
-  { id: 1, title: "Homepage", url: "/" },
-  { id: 2, title: "Menu", url: "/menu" },
-  { id: 3, title: "Featured", url: "/#featured" },
-  { id: 4, title: "Order Online", url: "/menu" },
+  { id: 1, title: "Our Story", url: "/#story" },
+  { id: 2, title: "Deals", url: "/#deals" },
+  { id: 3, title: "Visit Us", url: "/#visit" },
 ];
 
 const Menu = () => {
@@ -26,6 +25,9 @@ const Menu = () => {
 
   return (
     <div>
+      <div>
+         <h1> Menu items</h1>
+      </div>
       <button
         type="button"
         aria-label={open ? "Close navigation menu" : "Open navigation menu"}
@@ -45,7 +47,7 @@ const Menu = () => {
         <nav
           id="mobile-navigation"
           aria-label="Mobile navigation"
-          className="absolute left-0 top-full z-10 flex w-full max-h-[calc(100dvh-6rem)] flex-col items-center justify-center gap-8 overflow-y-auto bg-white py-8 text-2xl font-semibold text-stone-900 shadow-xl md:hidden"
+        className="mobile-menu-panel"
         >
           {links.map((item) => (
             <Link href={item.url} key={item.id} onClick={() => setOpen(false)}>
