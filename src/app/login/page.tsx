@@ -2,16 +2,18 @@
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 
 const LoginPage = () => {
   const { status } = useSession();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect") ?? "/";
 
   useEffect(() => {
-    if (status === "authenticated") router.replace("/");
-  }, [status, router]);
+    if (status === "authenticated") router.replace(redirect);
+  }, [status, router, redirect]);
 
   if (status === "loading" || status === "authenticated") {
     return <p className="p-8 text-center" role="status">Loading...</p>;
@@ -38,7 +40,7 @@ const LoginPage = () => {
           <p>Sign in or create an account to place and track your orders.</p>
           <button
             className="flex gap-4 p-4 ring-1 ring-orange-100 rounded-md"
-            onClick={() => signIn("google")}
+            onClick={() => signIn("google", { callbackUrl: redirect })}
           >
             <Image
               src="/google.png"

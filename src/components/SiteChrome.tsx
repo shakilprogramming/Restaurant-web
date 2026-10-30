@@ -18,6 +18,7 @@ const SiteChrome = ({ children }: { children: React.ReactNode }) => {
     (pathname === "/orders" &&
       status === "authenticated" &&
       session?.user.isAdmin);
+  const isPaymentPath = pathname === "/pay" || pathname.startsWith("/pay/");
 
   if (isAdminPath) {
     return <AdminShell>{children}</AdminShell>;
@@ -25,7 +26,7 @@ const SiteChrome = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <Navbar />
+      {!isPaymentPath && <Navbar />}
       {children}
       <Footer />
     </>

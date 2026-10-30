@@ -8,6 +8,14 @@ export async function POST(
   request: NextRequest,
   { params }: { params: { order: string } }
 ) {
+  const orderId = params?.order;
+  if (!orderId) {
+    return NextResponse.json(
+      { message: "Order ID is required." },
+      { status: 400 }
+    );
+  }
+
   const session = await getAuthSession();
   if (!session?.user.email) {
     return NextResponse.json(
@@ -18,7 +26,7 @@ export async function POST(
 
   try {
     const order = await prisma.order.findUnique({
-      where: { id: params.order },
+      where: { id: orderId },
     });
 
     if (!order) {

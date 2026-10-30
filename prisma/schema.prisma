@@ -91,3 +91,10 @@ model Order {
   user      User     @relation(fields: [userEmail], references: [email])
   userEmail String
 } 
+
+model ProcessedStripeEvent {
+  id          String   @id @default(cuid())
+  eventId     String   @unique
+  eventType   String
+  processedAt DateTime @default(now())
+}
