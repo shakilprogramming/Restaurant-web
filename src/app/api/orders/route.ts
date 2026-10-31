@@ -2,6 +2,7 @@ import { getAuthSession } from "@/utils/auth";
 import { prisma } from "@/utils/connect";
 import { NextRequest, NextResponse } from "next/server";
 import { toProductType } from "@/utils/products";
+import type { Product } from "@prisma/client";
 
 type RequestedCartItem = {
   id?: unknown;
@@ -93,7 +94,7 @@ export const POST = async (request: NextRequest) => {
       where: { id: { in: cartItems.map((item) => item.id as string) } },
     });
     const productMap = new Map(
-      productsFromDb.map((product) => [product.id, toProductType(product)])
+      productsFromDb.map((product: Product) => [product.id, toProductType(product)])
     );
     const orderProducts = [];
 
