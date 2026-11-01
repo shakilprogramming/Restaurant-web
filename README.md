@@ -33,3 +33,21 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 # Restaurant-web
+
+## Google sign-in deployment setup
+
+Configure these environment variables for the Vercel project:
+
+- `DATABASE_URL`: connection string for the production PostgreSQL database.
+- `GOOGLE_ID` and `GOOGLE_SECRET`: OAuth client credentials from Google Cloud.
+- `NEXTAUTH_SECRET`: a long, random secret used to sign authentication tokens.
+- `NEXTAUTH_URL`: the canonical deployed URL, including `https://`.
+
+In the Google Cloud OAuth client, add the deployed domain to **Authorized
+JavaScript origins** and add
+`https://<your-domain>/api/auth/callback/google` to **Authorized redirect URIs**.
+The redirect URI must match the domain used for sign-in.
+
+After setting the variables, redeploy the Vercel project. Apply Prisma migrations
+to the production database before the first sign-in so NextAuth can store users
+and accounts.
